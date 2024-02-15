@@ -31,7 +31,8 @@ task ExecuteBinning {
 	>>>
 
 	output {
-		Array[File] bins = glob("*.fa")
+		Array[File] bined = glob("*[0-9]*.fa")
+		File unbinned = "bin.unbinned.fa"
 	}
 
 	runtime {
