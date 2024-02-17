@@ -1,7 +1,7 @@
 import argparse
 
 from pathlib import Path
-from cli_aux.cli_aux import CliAux
+from metagen_phage_pipeline.cli_aux.cli_aux import CliAux
 
 def main():
     parser = argparse.ArgumentParser(
