@@ -32,7 +32,6 @@ task ExecutePrediction {
 
 	command <<<
 		cat ~{sep(' ', bins)} > tmp.fa
-		virsorter setup -d db -j ~{threads}
 		if ~{findProvirus}; then
 			virsorter run -w results -i tmp.fa -j ~{threads} --include-groups dsDNAphage
 		else
@@ -45,7 +44,7 @@ task ExecutePrediction {
 	}
 
 	runtime {
-		container: "staphb/virsorter2"
+		container: "vsflores/metagen-virsorter:latest"
 	}
 }
 
