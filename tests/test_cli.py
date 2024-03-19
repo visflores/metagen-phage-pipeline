@@ -1,4 +1,5 @@
 import shutil
+import os
 import subprocess
 import unittest
 from pathlib import Path
@@ -10,13 +11,24 @@ class MetagenTestCli(unittest.TestCase):
         Esse teste pode demorar alguns minutos.
     """
 
+    BASE = Path(__file__).parent
+
     def tearDown(self):
         """
             Criação de diretório temporário para resultados e incluindo ele
             para remoção após testes.
         """
-        results = Path("results")
+        results = MetagenTestCli.BASE / "results"
+        input = MetagenTestCli.BASE / "input.json"
+        output = MetagenTestCli.BASE / "output.json"
+        r1 = MetagenTestCli.BASE / "assets" / "reads" / "multi_1.fastq"
+        r2 = MetagenTestCli.BASE / "assets" / "reads" / "multi_2.fastq"
+
         self.addCleanup(shutil.rmtree, results)
+        self.addCleanup(os.remove, input)
+        self.addCleanup(os.remove, output)
+        self.addCleanup(os.remove, r1)
+        self.addCleanup(os.remove, r2)
 
     def _runMetagen(self, multifasta, reads):
         """
