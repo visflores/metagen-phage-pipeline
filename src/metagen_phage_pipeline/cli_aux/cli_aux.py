@@ -9,6 +9,8 @@
 """
 import subprocess
 import json
+import gzip
+import shutil
 
 from pathlib import Path
 
@@ -90,7 +92,7 @@ class CliAux:
 
         dicio = {}
 
-        dicio["MainFlow.multiFasta"] = self.scaffold_file.absolute().as_posix()
+        dicio["MainFlow.multiFasta"] = self.__uncompress_if_need(self.scaffold_file)
         dicio["MainFlow.readsToMap"] = self.grouped_reads
         dicio["MainFlow.threads"] = self.threads
         dicio["MainFlow.findProvirus"] = self.find_prophages
@@ -100,6 +102,22 @@ class CliAux:
 
         self._input_json = Path("input.json")
 
+
+    def __uncompress_if_need(self, file):
+        """
+            Método usado para identificar se o arquivo submetido está ou não
+            comprimido em gzip. Caso esteja, este será descompresso e
+            retornado.
+        """
+        if file.suffix == ".gz":
+            file_path = file.absolute().as_posix().replace(".gz", "")
+            with gzip.open(file, "rb") as file_in:
+                with open(file_path, "wb") as file_out:
+                    shutil.copyfileobj(file_in, file_out)
+
+            return file_path
+
+        return file.absolute().as_posix()
 
     def __group_reads(self):
         """
@@ -113,16 +131,16 @@ class CliAux:
             agrupados.
         """
         r1, r2 = (
-            list(self.reads_dir.glob("*_1.fastq")),
-            list(self.reads_dir.glob("*_2.fastq"))
+            list(self.reads_dir.glob("*_1.fastq*")),
+            list(self.reads_dir.glob("*_2.fastq*"))
         )
 
         grouped_reads = []
 
         for one, two in zip(r1, r2):
             dicio = {
-                "left": one.absolute().as_posix(),
-                "right": two.absolute().as_posix()
+                "left": self.__uncompress_if_need(one),
+                "right": self.__uncompress_if_need(two)
             }
 
             grouped_reads.append(dicio)
