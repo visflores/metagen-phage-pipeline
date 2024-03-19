@@ -37,6 +37,75 @@ Após a predição, os resultados podem ser analisados e interpretados para iden
 
 ## Instalação
 
+O primeiro passo para a instalação da pipeline é realizar o download do repositório:
+
+```console
+$ git clone https://github.com/visflores/metagen-phage-pipeline.git
+```
+
+Após o download, vamos navegar até o diretório baixado e criar um ambiente virtual do python (v3.10 ou maior):
+
+```console
+$ cd metagen-phage-pipeline
+$ python3 -m venv env
+```
+
+Com o ambiente virtual criado podemos iniciar a instalação dos pacotes necessários para execução da pipeline:
+
+```console
+$ source env/bin/activate
+$ (env) pip install .
+```
+
+Por fim, para verificar a instalação correta da pipeline execute o script de teste:
+
+```console
+$ (env) cd tests/
+$ (env) python3 -m unittest -v
+```
+
+Caso a execução seja completada sem nenhum erro a pipeline estará pronta para uso.
+
+## Executando a pipeline
+
+Com o ambiente virtual em que os pacotes da pipeline estão instalados, use o comando abaixo para checar todas as opções da CLI:
+
+```console
+$ (env) metagen-phage -h
+
+Pipeline para a recuperação de MAGs de bacteriófagos a partir de metagenomas.
+
+options:
+  -h, --help            show this help message and exit
+  -file SCAFFOLD_FILE, --scaffold-file SCAFFOLD_FILE
+                        Arquivo multifasta com todos os contigs montados a partir dos reads passados a flag '--reads-
+                        dir'.
+  -reads READS_DIR, --reads-dir READS_DIR
+                        "Diretório contendo os reads usados para a montagem dos contigos do arquivo multifasta
+                        passado para a flag '--scaffold-file'.
+  -t THREADS, --threads THREADS
+                        Quantidade de threads que será usada para a execução da pipeline.
+  -pro, --prophage-find
+                        Ativa a busca por profagos nos MAGs montados. Ativar essa opção torna o processo mais
+                        demorado.
+
+```
+
+Dois parâmetros são essenciais para que a pipeline possa ser executada:
+
+- `-file`: Arquivo multifasta contendo todos os _contigs_ de interesse e que foram montados usando as _reads_ apontadas no parâmetro `-reads`;
+- `-reads`: Diretório contendo as _reads_ usadas para a montagem dos _contigs_ no arquivo multifasta. Apenas _reads paired end_ são aceitas pela pipeline. As _reads_ devem ser nomeadas conforme a regra [NOME]_1.fastq e [NOME]_2.fastq. As _reads_ devem, também, serem descomprimidas antes do uso na pipeline.
+
+Com ambos os _inputs_ preparados, use o comando abaixo para executar a pipeline:
+
+```console
+$ (env) metagen-phage -file multifasta.fasta -reads reads/ -t 8
+```
+
+Os resultados das execuções da pipeline serão depositados em um diretório chamado `results`(caso o diretório não exista, ele será criado). 
+
+A cada execução é criado um novo diretório dentro de `results` contendo os _outputs_ gerados (esses diretórios são nomeados conforme o horário de execução), sendo que os MAGs gerados podem ser encontrados na pasta `out` desses diretórios. 
+
 ## Estudo de Caso
 
 Buscando demontrar a eficiência dessa pipeline, foi feito um estudo de caso utilizando dados reais. Esses dados provêm do metagenoma de recém nascidos e foram explorados no artigo de [SHARON, Itai et al](https://pubmed.ncbi.nlm.nih.gov/22936250/).
@@ -60,4 +129,7 @@ $ python3 spades.py --meta -k 21,33,55,77,99,113,117,121,127 -1 [READ_R1.fastq.g
 ```
 
 Todos os _contigs_ montados foram agrupados em um único arquivo fasta (multifasta) para ser usado na pipeline de recuperação de bacteriófagos.
+
+### Execução da pipeline
+
 
