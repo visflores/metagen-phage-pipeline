@@ -75,7 +75,7 @@ class CliAux:
             "-o",
             "output.json",
             "-d",
-            "results",
+            "./results/",
             CliAux.FLOW.absolute().as_posix()
         ]
 
@@ -130,14 +130,21 @@ class CliAux:
             Lista contendo dicionários com os respectivos reads R1 e R2
             agrupados.
         """
-        r1, r2 = (
-            list(self.reads_dir.glob("*_1.fastq*")),
-            list(self.reads_dir.glob("*_2.fastq*"))
-        )
+        r1 = list(self.reads_dir.glob("*_1.fastq*"))
+
+        suffix = "".join(r1[0].suffixes)
+
+        reads = [read.name.split("_")[0] for read in r1]
 
         grouped_reads = []
 
-        for one, two in zip(r1, r2):
+        for read in reads:
+            one = self.reads_dir / f"{read}_1{suffix}"
+            two = self.reads_dir / f"{read}_2{suffix}"
+
+            if (not one.exists()) or (not two.exists()):
+                raise FileNotFoundError(f"Read {one.name} or {two.name} not found.")
+
             dicio = {
                 "left": self.__uncompress_if_need(one),
                 "right": self.__uncompress_if_need(two)
