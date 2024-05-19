@@ -5,8 +5,8 @@ task SummarizeDepth {
 		Array[File] sortedBams
 	}
 
-	command <<< 
-		jgi_summarize_bam_contig_depths --outputDepth depths.txt "~{sep(' ', sortedBams)}"
+	command <<<
+		jgi_summarize_bam_contig_depths --outputDepth depths.txt ~{sep(" ", sortedBams)}
 	>>>
 
 	output {

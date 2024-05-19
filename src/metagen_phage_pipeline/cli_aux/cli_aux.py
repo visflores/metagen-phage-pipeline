@@ -75,14 +75,14 @@ class CliAux:
             "-o",
             "output.json",
             "-d",
-            "./results/",
+            "results",
             CliAux.FLOW.absolute().as_posix()
         ]
 
         runned = subprocess.run(cmd)
 
         if runned.returncode != 0:
-            raise CalledProcessError("Erro ao executar pipeline!")
+            raise ChildProcessError("Erro ao executar pipeline!")
 
     def __create_json(self):
         """

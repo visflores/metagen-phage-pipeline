@@ -55,24 +55,31 @@ workflow MainFlow {
 			input:
 				bin = bin
 		}
+
+		call PredictionTasks.ExecutePrediction {
+			input:
+				bin = AssembleInput.concatBins,
+				threads = threads,
+				findProvirus = findProvirus
+		}
 	}
 
-	call PredictionTasks.ExecutePrediction {
+	call PredictionTasks.MergeResults {
 		input:
-			bins = AssembleInput.concatBins,
-			threads = threads,
-			findProvirus = findProvirus
+			phageBins = ExecutePrediction.phageBins
 	}
 
 	call PredictionTasks.PhageBins {
 		input:
-			phageBins = ExecutePrediction.phageBins,
-			bins = ExecuteBinning.bined
+			phageBins = MergeResults.phageBinsMerged,
+			bins = ExecuteBinning.bined,
+			errorCheck = ExecutePrediction.errorCheck
 	}
 
 	output {
-		File phageInfos = ExecutePrediction.phageBins
+		File phageInfos = MergeResults.phageBinsMerged
 		Array[File] phageMags = PhageBins.phageMags
 		Array[File] noPhageMags = PhageBins.noPhageMags
+		File errorFile = PhageBins.errorFile
 	}
 }

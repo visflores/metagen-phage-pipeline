@@ -25,22 +25,30 @@ task AssembleInput {
 
 task ExecutePrediction {
 	input {
-		Array[File] bins
+		File bin
 		Int threads
 		Boolean findProvirus = false
 	}
 
+	String binName = basename(bin)
+
 	command <<<
-		cat ~{sep(' ', bins)} > tmp.fa
 		if ~{findProvirus}; then
-			virsorter run -w results -i tmp.fa -j ~{threads} --include-groups dsDNAphage
+			virsorter run -w results -i ~{bin} -j ~{threads} --include-groups dsDNAphage
 		else
-			virsorter run -w results -i tmp.fa -j ~{threads} --include-groups dsDNAphage --provirus-off
+			virsorter run -w results -i ~{bin} -j ~{threads} --include-groups dsDNAphage --provirus-off
+		fi
+		if [ $? -ne 0 ]; then
+			echo "~{binName} error of prediction" > ~{binName}
+			touch results/final-viral-score.tsv
+		else
+			echo "~{binName} success" > ~{binName}
 		fi
 	>>>
 
 	output {
 		File phageBins = "results/final-viral-score.tsv"
+		File errorCheck = "~{binName}"
 	}
 
 	runtime {
@@ -48,10 +56,25 @@ task ExecutePrediction {
 	}
 }
 
+task MergeResults {
+	input {
+		Array[File] phageBins
+	}
+
+	command <<<
+		cat ~{sep(" ", phageBins)} > all_results.tsv
+	>>>
+
+	output {
+		File phageBinsMerged = "all_results.tsv"
+	}
+}
+
 task PhageBins {
 	input {
 		File phageBins
 		Array[File] bins
+		Array[File] errorCheck
 	}
 
 	command <<<
@@ -66,11 +89,13 @@ task PhageBins {
 				cp $bin no_phage_mags/
 			fi
 		done
+		cat ~{sep(" ", errorCheck)} > error_check.txt
 	>>>
 
 	output {
 		Array[File] phageMags = glob("phage_mags/*.fa")
 		Array[File] noPhageMags = glob("no_phage_mags/*.fa")
+		File errorFile = "error_check.txt"
 	}
 
 	runtime {
