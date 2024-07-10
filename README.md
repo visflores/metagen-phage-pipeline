@@ -132,4 +132,14 @@ Todos os _contigs_ montados foram agrupados em um único arquivo fasta (multifas
 
 ### Execução da pipeline
 
+O arquivo multifasta e todos os _reads_ coletados foram utilizados como input para a pipeline com o seguinte comando:
+
+```console
+$ (env) metagen-phage -file multifasta.fasta -reads reads/ -t 12
+```
+
+Optei por deixar a busca por profagos desligadas para reduzir o tempo de processamento. A execução foi feita em um desktop com __16 GB de memória RAM e um processador AMD Ryzen 5 4600H__. O tempo total utilizado para executar a pipeline foi de __cerca de 5h38min__.
+Ao final da execução foram recuperados  __34 possíveis MAGs de fagos__. Analisando esses MAGs com a ferramenta CheckV, identificamos que 15 apresentaram uma alta qualidade, indicando uma grande completude do genoma. Apenas 1 foi identificado como sendo um possível profago. Os resultados encontrados com a ferramenta CheckV podem ser observados no arquivo 'quality_summary.tsv' depositado no diretório 'analysis'.
+
+---
 
