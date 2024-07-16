@@ -1,0 +1,35 @@
+contig_id	contig_length	provirus	proviral_length	gene_count	viral_genes	host_genes	checkv_quality	miuvig_quality	completeness	completeness_method	contamination	kmer_freq	warnings
+bin.109.fa	27686	No	NA	46	20	0	Medium-quality	Genome-fragment	63.7	AAI-based (high-confidence)	0.0	3.7	high kmer_freq may indicate large duplication
+bin.115.fa	932634	No	NA	1077	17	282	High-quality	High-quality	99.16	HMM-based (lower-bound)	0.0	5.51	high kmer_freq may indicate large duplication
+bin.136.fa	15370	No	NA	25	24	0	Low-quality	Genome-fragment	35.69	AAI-based (high-confidence)	0.0	1.76	high kmer_freq may indicate large duplication
+bin.137.fa	12525	No	NA	17	17	0	Low-quality	Genome-fragment	29.11	AAI-based (high-confidence)	0.0	1.74	high kmer_freq may indicate large duplication
+bin.138.fa	36810	No	NA	39	30	0	High-quality	High-quality	100.0	AAI-based (high-confidence)	0.0	1.97	high kmer_freq may indicate large duplication
+bin.139.fa	56993	No	NA	101	53	2	High-quality	High-quality	100.0	AAI-based (high-confidence)	0.0	2.26	high kmer_freq may indicate large duplication
+bin.142.fa	10622	No	NA	18	13	0	Low-quality	Genome-fragment	24.26	AAI-based (high-confidence)	0.0	2.04	high kmer_freq may indicate large duplication
+bin.148.fa	28671	No	NA	26	21	3	Medium-quality	Genome-fragment	65.93	AAI-based (high-confidence)	0.0	3.45	high kmer_freq may indicate large duplication
+bin.150.fa	30354	No	NA	43	17	0	Medium-quality	Genome-fragment	66.0	AAI-based (medium-confidence)	0.0	2.95	high kmer_freq may indicate large duplication
+bin.154.fa	15671	No	NA	26	23	0	Medium-quality	Genome-fragment	53.19	AAI-based (high-confidence)	0.0	1.57	high kmer_freq may indicate large duplication
+bin.158.fa	10601	No	NA	20	16	1	Low-quality	Genome-fragment	22.93	AAI-based (medium-confidence)	0.0	1.57	high kmer_freq may indicate large duplication
+bin.17.fa	11177	No	NA	14	0	6	Not-determined	Genome-fragment	NA	NA	0.0	2.09	no viral genes detected; high kmer_freq may indicate large duplication
+bin.22.fa	362409	No	NA	512	376	20	High-quality	High-quality	100.0	AAI-based (high-confidence)	0.0	6.16	high kmer_freq may indicate large duplication; contig >1.5x longer than expected genome length
+bin.26.fa	60099	No	NA	100	95	0	High-quality	High-quality	100.0	AAI-based (high-confidence)	0.0	2.72	high kmer_freq may indicate large duplication
+bin.27.fa	185661	No	NA	274	34	21	High-quality	High-quality	100.0	HMM-based (lower-bound)	0.0	6.61	high kmer_freq may indicate large duplication
+bin.35.fa	11492	No	NA	15	0	1	Not-determined	Genome-fragment	NA	NA	0.0	1.89	no viral genes detected; high kmer_freq may indicate large duplication
+bin.37.fa	11447	No	NA	2	0	0	Not-determined	Genome-fragment	NA	NA	0.0	2.72	no viral genes detected; high kmer_freq may indicate large duplication
+bin.40.fa	52295	No	NA	116	94	2	High-quality	High-quality	100.0	AAI-based (high-confidence)	0.0	2.27	high kmer_freq may indicate large duplication
+bin.41.fa	84006	No	NA	101	3	58	High-quality	High-quality	100.0	HMM-based (lower-bound)	0.0	1.02	
+bin.42.fa	14285	No	NA	34	18	0	Low-quality	Genome-fragment	33.28	AAI-based (high-confidence)	0.0	1.56	high kmer_freq may indicate large duplication
+bin.43.fa	52207	No	NA	54	39	0	High-quality	High-quality	100.0	AAI-based (high-confidence)	0.0	2.77	high kmer_freq may indicate large duplication; contig >1.5x longer than expected genome length
+bin.48.fa	226437	No	NA	303	248	3	High-quality	High-quality	100.0	AAI-based (high-confidence)	0.0	2.98	high kmer_freq may indicate large duplication; contig >1.5x longer than expected genome length
+bin.56.fa	157893	No	NA	179	102	11	High-quality	High-quality	100.0	AAI-based (high-confidence)	0.0	2.61	high kmer_freq may indicate large duplication; contig >1.5x longer than expected genome length
+bin.60.fa	14589	No	NA	17	16	0	Low-quality	Genome-fragment	33.82	AAI-based (high-confidence)	0.0	1.77	high kmer_freq may indicate large duplication
+bin.62.fa	21976	No	NA	27	26	0	Medium-quality	Genome-fragment	74.6	AAI-based (high-confidence)	0.0	1.5	high kmer_freq may indicate large duplication
+bin.65.fa	35910	No	NA	129	0	0	Not-determined	Genome-fragment	NA	NA	0.0	6.3	no viral genes detected; high kmer_freq may indicate large duplication
+bin.66.fa	13618	No	NA	11	0	3	Not-determined	Genome-fragment	NA	NA	0.0	2.45	no viral genes detected; high kmer_freq may indicate large duplication
+bin.68.fa	62773	No	NA	120	21	0	High-quality	High-quality	100.0	AAI-based (high-confidence)	0.0	4.51	high kmer_freq may indicate large duplication; contig >1.5x longer than expected genome length
+bin.69.fa	256654	No	NA	309	30	15	High-quality	High-quality	100.0	HMM-based (lower-bound)	0.0	5.0	high kmer_freq may indicate large duplication
+bin.72.fa	18958	No	NA	14	12	0	Low-quality	Genome-fragment	43.97	AAI-based (high-confidence)	0.0	1.99	high kmer_freq may indicate large duplication
+bin.8.fa	13071	No	NA	8	5	0	Low-quality	Genome-fragment	36.14	AAI-based (high-confidence)	0.0	1.08	
+bin.95.fa	318647	No	NA	385	50	62	High-quality	High-quality	100.0	HMM-based (lower-bound)	0.0	2.32	high kmer_freq may indicate large duplication
+bin.96.fa	10944	No	NA	4	0	0	Not-determined	Genome-fragment	NA	NA	0.0	3.39	no viral genes detected; high kmer_freq may indicate large duplication
+bin.98.fa	4736922	Yes	73306	4490	142	3150	High-quality	High-quality	94.17	HMM-based (lower-bound)	98.45	2.6	>1 viral region detected; high kmer_freq may indicate large duplication
